@@ -7,23 +7,10 @@ cache:
     - /home/travis/.vagrant.d/boxes
 
 install:
-  - sudo apt -y update
-  - >
-    curl -sLO
-      'https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb'
-        -o /tmp/vagrant.deb
-  - >
-    curl -sLO
-      'https://download.virtualbox.org/virtualbox/6.1.6/virtualbox-6.1_6.1.6-137129~Ubuntu~bionic_amd64.deb'
-        -o /tmp/virtualbox.deb
-  - >
-    sudo apt -y install
-      build-essential
-      "linux-headers-$(uname -r)"
-  - >
-    sudo apt -y install
-      /tmp/vagrant.deb
-      /tmp/virtualbox.deb
+  - curl -sLO -o /tmp/vagrant.deb    'https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb'
+  - curl -sLO -o /tmp/virtualbox.deb 'https://download.virtualbox.org/virtualbox/6.1.6/virtualbox-6.1_6.1.6-137129~Ubuntu~bionic_amd64.deb'
+  - sudo apt -y update && sudo apt -y install build-essential "linux-headers-$(uname -r)"
+  - sudo apt -y install /tmp/vagrant.deb /tmp/virtualbox.deb
   - sudo systemctl start vboxdrv
   - sudo VBoxManage --version
   - vagrant --version
