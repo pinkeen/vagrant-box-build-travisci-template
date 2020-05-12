@@ -6,7 +6,6 @@ cache:
   directories:
     - /home/travis/.vagrant.d/boxes
 
-
 install:
   - sudo apt -y update
   - >
@@ -30,5 +29,5 @@ install:
   - vagrant --version
 
 script:
-  - sudo vagrant up --debug --provider=virtualbox
+  - sudo vagrant up --provider=virtualbox
   - sudo vagrant ssh -c "echo 'hello world!'"
